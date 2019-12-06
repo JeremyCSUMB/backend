@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
-import edu.csumb.Webstore.model.Product;
-import edu.csumb.Webstore.service.ProductService;
+import edu.csumb.Webstore.model.Question;
+import edu.csumb.Webstore.service.QuestionService;
 
 @RestController
-public class ProductController
+public class QuestionController
 {
 
     //This is autowiring(Telling spring to just connect to the dang service automatically) for us.
     @Autowired
-    ProductService productService;
+    QuestionService questionService;
 
     //REQUESTMAPPING
     //We are setting a request mapping with request type GET. You can change these to POST or anything else you want!
@@ -52,33 +52,33 @@ public class ProductController
 
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/products/getAll")
-    @ApiOperation(value = "Gets all products from the database." )
-    public Iterable<Product> getAll()
+    @RequestMapping(method = RequestMethod.GET, value = "/question/getAll")
+    @ApiOperation(value = "Gets all questions from the database." )
+    public Iterable<Question> getAll()
     {
         //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
         //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
         //So we are calling the service function we want.
-        return productService.getAll();
+        return questionService.getAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/products/get/{id}")
-    @ApiOperation(value = "Get a specific product from the database by it's ID." )
-    public Product getByID(@PathVariable String id)
+    @RequestMapping(method = RequestMethod.GET, value = "/question/get/{id}")
+    @ApiOperation(value = "Get a specific question from the database by it's ID." )
+    public Question getByID(@PathVariable String id)
     {
         //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
         //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
         //So we are calling the service function we want.
-        return productService.getById(id);
+        return questionService.getById(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/products/add")
-    @ApiOperation(value = "Add a new product to the database." )
-    public Product getByID(@RequestBody Product myProduct)
+    @RequestMapping(method = RequestMethod.POST, value = "/question/add")
+    @ApiOperation(value = "Add a new question to the database." )
+    public Question getByID(@RequestBody Question myQuestion)
     {
         //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
         //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
         //So we are calling the service function we want.
-        return productService.addProduct(myProduct);
+        return questionService.addQuestion(myQuestion);
     }
 }

@@ -2,12 +2,12 @@
 package edu.csumb.Webstore.repositories;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
-import edu.csumb.Webstore.model.Product;
+import edu.csumb.Webstore.model.Question;
 
 //Remember to denote what type of folder it is!
 @Repository
 //Setting up our database to be a MongoDB with Key's that are products, and values that are strings.
-public interface ProductRepository extends MongoRepository<Product,String>
+public interface QuestionRepository extends MongoRepository<Question,String>
 {
     //Will largely stay empty. You can add extra database features here if you want!
 }

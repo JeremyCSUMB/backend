@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - WebstoreApplication",
+            "request": "launch",
+            "mainClass": "edu.csumb.Webstore.WebstoreApplication",
+            "projectName": "Webstore"
+        }
+    ]
+}

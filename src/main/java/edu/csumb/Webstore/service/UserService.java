@@ -20,9 +20,6 @@ public class UserService
     @Autowired
     private UserRepository repo;
 
-    @Autowired
-    ProductService productService;
-
     public boolean authenticate(String username, String password) {
         if (repo.existsById(username.toLowerCase())) {
             return repo.findById(username).get().getPassword().equals(password);
@@ -60,17 +57,5 @@ public class UserService
         return false;
     }
 
-    public Boolean checkoutProduct(String username) {
-        if (repo.existsById(username.toLowerCase())) {
-            User user = repo.findById(username).get();
 
-            for (String productId : user.getCart().keySet()) {
-                productService.changeStock(productId, user.getCart().get(productId));
-            }
-            user.clearCart();
-            repo.save(user);
-            return true;
-        }
-        return false;
-    }
 }
