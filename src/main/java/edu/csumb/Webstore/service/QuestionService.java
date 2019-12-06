@@ -45,4 +45,14 @@ public class QuestionService
     public void removeAll() {
         repo.deleteAll();
     }
+
+    public Boolean checkAnswer(String id, String answer) {
+        if (repo.findById(id).get().getAnswer().equals(answer)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }

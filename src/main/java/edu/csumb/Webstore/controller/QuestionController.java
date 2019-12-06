@@ -92,6 +92,16 @@ public class QuestionController
         questionService.removeAll();
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/question/{id}/checkAnswer")
+    @ApiOperation(value = "Checks if the answer is correct." )
+    public Boolean checkAnswer(@PathVariable String id, @RequestParam("answer") String answer)
+    {
+        //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
+        //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
+        //So we are calling the service function we want.
+        return questionService.checkAnswer(id, answer);
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/question/add")
     @ApiOperation(value = "Add a new question to the database." )
     public Question getByID(@RequestBody Question myQuestion)
