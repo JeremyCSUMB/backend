@@ -72,6 +72,26 @@ public class QuestionController
         return questionService.getById(id);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/question/delete/{id}")
+    @ApiOperation(value = "Delete a specific question from the database by it's ID." )
+    public Boolean removeByID(@PathVariable String id)
+    {
+        //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
+        //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
+        //So we are calling the service function we want.
+        return questionService.removeById(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/question/deleteAll")
+    @ApiOperation(value = "Deletes all questions in the repo." )
+    public void removeAll()
+    {
+        //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
+        //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
+        //So we are calling the service function we want.
+        questionService.removeAll();
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/question/add")
     @ApiOperation(value = "Add a new question to the database." )
     public Question getByID(@RequestBody Question myQuestion)

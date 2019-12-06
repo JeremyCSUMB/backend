@@ -32,4 +32,17 @@ public class QuestionService
     public Question addQuestion(Question myQuestion) {
         return repo.save(myQuestion);
     }
+
+    public Boolean removeById(String id) {
+        if (repo.existsById(id)) {
+            repo.delete(repo.findById(id).get());
+            return true;
+        } else {
+            return false;
+        } 
+    }
+    
+    public void removeAll() {
+        repo.deleteAll();
+    }
 }
