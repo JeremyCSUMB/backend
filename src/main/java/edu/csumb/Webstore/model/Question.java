@@ -20,10 +20,10 @@ public class Question
     public Question() {
         question = "Default";
         description = "This is the description of a default question";
-        a = "this is a";
-        b = "this is b";
-        c = "this is c";
-        answer = "a";
+        a = "a";
+        b = "b";
+        c = "c";
+        answer = a;
         value = 1;
     }
     public String getQuestion() {
@@ -44,7 +44,7 @@ public class Question
     public String getC() {
         return c;
     }
-    public String answer() {
+    public String getAnswer() {
         return answer;
     }
     public Integer getValue() {
