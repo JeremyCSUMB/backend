@@ -41,4 +41,8 @@ public class QuestionService
             return false;
         } 
     }
+    
+    public void removeAll() {
+        repo.deleteAll();
+    }
 }
