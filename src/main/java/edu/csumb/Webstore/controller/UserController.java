@@ -60,4 +60,14 @@ public class UserController
         //So we are calling the service function we want.
         return userService.authenticate(username, password);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/addUser")
+    @ApiOperation(value = "Creates a user with username and password" )
+    public Boolean addUser(@RequestParam("username") String username, @RequestParam("password") String password)
+    {
+        //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
+        //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
+        //So we are calling the service function we want.
+        return userService.addUser(username, password);
+    }
 }
