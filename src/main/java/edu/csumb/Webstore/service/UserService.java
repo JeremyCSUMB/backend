@@ -35,27 +35,5 @@ public class UserService
         return true;
     }
 
-    public boolean addProduct(String username, String productId, Integer quantity) {
-        if (quantity < 1) {
-            return false;
-        }
-        if (repo.existsById(username.toLowerCase())) {
-            User user = repo.findById(username).get();
-            user.addToCart(productId, quantity);
-            repo.save(user);
-            return true;
-        }
-        return false;
-    }
-    public boolean updateProduct(String username, String productId, Integer quantity) {
-        if (repo.existsById(username.toLowerCase())) {
-            User user = repo.findById(username).get();
-            user.updateCart(productId, quantity);
-            repo.save(user);
-            return true;
-        }
-        return false;
-    }
-
 
 }
