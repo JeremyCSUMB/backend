@@ -92,7 +92,7 @@ public class QuestionController
         questionService.removeAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/question/{id}/checkAnswer")
+    @RequestMapping(method = RequestMethod.POST, value = "/question/{id}/checkAnswer")
     @ApiOperation(value = "Checks if the answer is correct." )
     public Boolean checkAnswer(@PathVariable String id, @RequestParam("answer") String answer)
     {
