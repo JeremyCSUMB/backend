@@ -51,7 +51,7 @@ public class UserController
     //public void foo(@RequestParam dataType pathVar, @RequestBody dataType postVar)
 
 
-    @RequestMapping(method = RequestMethod.GET, value = "/auth")
+    @RequestMapping(method = RequestMethod.POST, value = "/auth")
     @ApiOperation(value = "Authenticates a user with username and password" )
     public Boolean authenticate(@RequestParam("username") String username, @RequestParam("password") String password)
     {
@@ -61,7 +61,7 @@ public class UserController
         return userService.authenticate(username, password);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/addUser")
+    @RequestMapping(method = RequestMethod.POST, value = "/addUser")
     @ApiOperation(value = "Creates a user with username and password" )
     public Boolean addUser(@RequestParam("username") String username, @RequestParam("password") String password)
     {
