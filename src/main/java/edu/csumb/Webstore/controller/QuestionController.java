@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import edu.csumb.Webstore.model.Question;
 import edu.csumb.Webstore.service.QuestionService;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+
 
 @RestController
 public class QuestionController
@@ -51,7 +54,7 @@ public class QuestionController
     //public void foo(@RequestParam dataType pathVar, @RequestBody dataType postVar)
 
 
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(method = RequestMethod.GET, value = "/question/getAll")
     @ApiOperation(value = "Gets all questions from the database." )
     public Iterable<Question> getAll()
@@ -61,7 +64,7 @@ public class QuestionController
         //So we are calling the service function we want.
         return questionService.getAll();
     }
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(method = RequestMethod.GET, value = "/question/get/{id}")
     @ApiOperation(value = "Get a specific question from the database by it's ID." )
     public Question getByID(@PathVariable String id)
@@ -71,7 +74,7 @@ public class QuestionController
         //So we are calling the service function we want.
         return questionService.getById(id);
     }
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(method = RequestMethod.GET, value = "/question/delete/{id}")
     @ApiOperation(value = "Delete a specific question from the database by it's ID." )
     public Boolean removeByID(@PathVariable String id)
@@ -81,7 +84,7 @@ public class QuestionController
         //So we are calling the service function we want.
         return questionService.removeById(id);
     }
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(method = RequestMethod.GET, value = "/question/deleteAll")
     @ApiOperation(value = "Deletes all questions in the repo." )
     public void removeAll()
@@ -91,7 +94,7 @@ public class QuestionController
         //So we are calling the service function we want.
         questionService.removeAll();
     }
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(method = RequestMethod.POST, value = "/question/{id}/checkAnswer")
     @ApiOperation(value = "Checks if the answer is correct." )
     public Boolean checkAnswer(@PathVariable String id, @RequestParam("answer") String answer)
@@ -101,7 +104,7 @@ public class QuestionController
         //So we are calling the service function we want.
         return questionService.checkAnswer(id, answer);
     }
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(method = RequestMethod.POST, value = "/question/add")
     @ApiOperation(value = "Add a new question to the database." )
     public Question getByID(@RequestBody Question myQuestion)

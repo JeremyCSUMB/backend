@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
 import edu.csumb.Webstore.model.User;
 import edu.csumb.Webstore.service.UserService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RestController
 public class UserController
@@ -50,7 +51,7 @@ public class UserController
     // So IF @RequestMapping(value = "/{pathVar}", method = RequestMethod.PUT)
     //public void foo(@RequestParam dataType pathVar, @RequestBody dataType postVar)
 
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(method = RequestMethod.POST, value = "/auth")
     @ApiOperation(value = "Authenticates a user with username and password" )
     public Boolean authenticate(@RequestParam("username") String username, @RequestParam("password") String password)
@@ -61,6 +62,7 @@ public class UserController
         return userService.authenticate(username, password);
     }
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(method = RequestMethod.POST, value = "/addUser")
     @ApiOperation(value = "Creates a user with username and password" )
     public Boolean addUser(@RequestParam("username") String username, @RequestParam("password") String password)
