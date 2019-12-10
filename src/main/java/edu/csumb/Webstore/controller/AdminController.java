@@ -15,19 +15,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import io.swagger.annotations.ApiOperation;
-import edu.csumb.Webstore.model.Question;
-import edu.csumb.Webstore.service.QuestionService;
+import edu.csumb.Webstore.model.Admin;
+import edu.csumb.Webstore.service.AdminService;
 import org.springframework.web.bind.annotation.CrossOrigin;
-
 
 @CrossOrigin
 @RestController
-public class QuestionController
+public class AdminController
 {
 
     //This is autowiring(Telling spring to just connect to the dang service automatically) for us.
     @Autowired
-    QuestionService questionService;
+    AdminService AdminService;
 
     //REQUESTMAPPING
     //We are setting a request mapping with request type GET. You can change these to POST or anything else you want!
@@ -53,59 +52,43 @@ public class QuestionController
     // So IF @RequestMapping(value = "/{pathVar}", method = RequestMethod.PUT)
     //public void foo(@RequestParam dataType pathVar, @RequestBody dataType postVar)
 
+    @RequestMapping(method = RequestMethod.GET, value = "/admin/auth")
+    @ApiOperation(value = "Authenticates a admin with username and password" )
+    public Boolean authenticate(@RequestParam("username") String username, @RequestParam("password") String password)
+    {
+        //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
+        //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
+        //So we are calling the service function we want.
+        return AdminService.authenticate(username, password);
+    }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/question/getAll")
-    @ApiOperation(value = "Gets all questions from the database." )
-    public Iterable<Question> getAll()
+    @RequestMapping(method = RequestMethod.GET, value = "/admin/addUser")
+    @ApiOperation(value = "Creates an admin with username and password" )
+    public Boolean addUser(@RequestParam("username") String username, @RequestParam("password") String password)
     {
         //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
         //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
         //So we are calling the service function we want.
-        return questionService.getAll();
+        return AdminService.addUser(username, password);
     }
-    @RequestMapping(method = RequestMethod.GET, value = "/question/get/{id}")
-    @ApiOperation(value = "Get a specific question from the database by it's ID." )
-    public Question getByID(@PathVariable String id)
+
+    @RequestMapping(method = RequestMethod.GET, value = "/admin/getAllAdmins")
+    @ApiOperation(value = "Gets all admins from the database." )
+    public Iterable<Admin> getAll()
     {
         //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
         //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
         //So we are calling the service function we want.
-        return questionService.getById(id);
+        return AdminService.getAll();
     }
-    @RequestMapping(method = RequestMethod.GET, value = "/question/delete/{id}")
-    @ApiOperation(value = "Delete a specific question from the database by it's ID." )
-    public Boolean removeByID(@PathVariable String id)
-    {
-        //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
-        //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
-        //So we are calling the service function we want.
-        return questionService.removeById(id);
-    }
-    @RequestMapping(method = RequestMethod.GET, value = "/question/deleteAll")
-    @ApiOperation(value = "Deletes all questions in the repo." )
+
+    @RequestMapping(method = RequestMethod.GET, value = "/deleteAllAdmins")
+    @ApiOperation(value = "Deletes all admins in the repo." )
     public void removeAll()
     {
         //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
         //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
         //So we are calling the service function we want.
-        questionService.removeAll();
-    }
-    @RequestMapping(method = RequestMethod.GET, value = "/question/{id}/checkAnswer")
-    @ApiOperation(value = "Checks if the answer is correct." )
-    public Boolean checkAnswer(@PathVariable String id, @RequestParam("answer") String answer)
-    {
-        //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
-        //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
-        //So we are calling the service function we want.
-        return questionService.checkAnswer(id, answer);
-    }
-    @RequestMapping(method = RequestMethod.POST, value = "/question/add")
-    @ApiOperation(value = "Add a new question to the database." )
-    public Question getByID(@RequestBody Question myQuestion)
-    {
-        //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
-        //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
-        //So we are calling the service function we want.
-        return questionService.addQuestion(myQuestion);
+        AdminService.removeAll();
     }
 }
