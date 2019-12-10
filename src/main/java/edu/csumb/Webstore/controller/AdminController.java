@@ -82,7 +82,7 @@ public class AdminController
         return AdminService.getAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/deleteAllAdmins")
+    @RequestMapping(method = RequestMethod.GET, value = "/admin/deleteAllAdmins")
     @ApiOperation(value = "Deletes all admins in the repo." )
     public void removeAll()
     {
