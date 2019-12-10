@@ -71,4 +71,24 @@ public class UserController
         //So we are calling the service function we want.
         return userService.addUser(username, password);
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/getAll")
+    @ApiOperation(value = "Gets all users from the database." )
+    public Iterable<User> getAll()
+    {
+        //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
+        //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
+        //So we are calling the service function we want.
+        return userService.getAll();
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/deleteAll")
+    @ApiOperation(value = "Deletes all users in the repo." )
+    public void removeAll()
+    {
+        //ALL LOGIC SHOULD BE IN THE SERVICE. EVEN IF IT'S JUST ONE LINE!
+        //IF YOU HAVE ANY LOGIC IN THE CONTROLLER IT IS BAD!
+        //So we are calling the service function we want.
+        userService.removeAll();
+    }
 }
