@@ -52,7 +52,7 @@ public class UserController
     // So IF @RequestMapping(value = "/{pathVar}", method = RequestMethod.PUT)
     //public void foo(@RequestParam dataType pathVar, @RequestBody dataType postVar)
 
-    @RequestMapping(method = RequestMethod.POST, value = "/auth")
+    @RequestMapping(method = RequestMethod.GET, value = "/auth")
     @ApiOperation(value = "Authenticates a user with username and password" )
     public Boolean authenticate(@RequestParam("username") String username, @RequestParam("password") String password)
     {
@@ -62,7 +62,7 @@ public class UserController
         return userService.authenticate(username, password);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/addUser")
+    @RequestMapping(method = RequestMethod.GET, value = "/addUser")
     @ApiOperation(value = "Creates a user with username and password" )
     public Boolean addUser(@RequestParam("username") String username, @RequestParam("password") String password)
     {
@@ -72,7 +72,7 @@ public class UserController
         return userService.addUser(username, password);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/getAll")
+    @RequestMapping(method = RequestMethod.GET, value = "/getAllUsers")
     @ApiOperation(value = "Gets all users from the database." )
     public Iterable<User> getAll()
     {
@@ -82,7 +82,7 @@ public class UserController
         return userService.getAll();
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/deleteAll")
+    @RequestMapping(method = RequestMethod.GET, value = "/deleteAllUsers")
     @ApiOperation(value = "Deletes all users in the repo." )
     public void removeAll()
     {

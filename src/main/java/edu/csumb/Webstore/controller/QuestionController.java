@@ -99,7 +99,7 @@ public class QuestionController
         //So we are calling the service function we want.
         return questionService.checkAnswer(id, answer);
     }
-    @RequestMapping(method = RequestMethod.POST, value = "/question/add")
+    @RequestMapping(method = RequestMethod.GET, value = "/question/add")
     @ApiOperation(value = "Add a new question to the database." )
     public Question getByID(@RequestBody Question myQuestion)
     {
