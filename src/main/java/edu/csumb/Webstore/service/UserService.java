@@ -27,6 +27,7 @@ public class UserService
             return false;
         }
     }
+    
     public boolean addUser(String username, String password) {
         if (repo.existsById(username.toLowerCase())) {
             return false;
@@ -35,5 +36,12 @@ public class UserService
         return true;
     }
 
+    public Iterable<User> getAll()
+    {
+        return repo.findAll();
+    }
 
+    public void removeAll() {
+        repo.deleteAll();
+    }
 }
